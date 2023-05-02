@@ -1,3 +1,6 @@
+mod game;
+mod screen;
+
 fn main() {
-    println!("Hello, world!");
+    game::run_game();
 }
