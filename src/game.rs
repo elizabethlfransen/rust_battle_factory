@@ -3,12 +3,22 @@ use std::time::{Duration, SystemTime};
 use ncurses::*;
 use crate::screen::{MainMenuScreen, ScreenStack};
 
+fn initialize_color() {
+    start_color();
+    use_default_colors();
+    for i in 1..256 {
+        init_pair(i,i,232);
+    }
+    bkgd(COLOR_PAIR(15));
+}
+
 fn initialize_ncurses() {
     setlocale(LcCategory::all, "");
     initscr();
     keypad(stdscr(), true);
     cbreak();
     curs_set(CURSOR_VISIBILITY::CURSOR_INVISIBLE);
+    initialize_color();
 }
 
 struct Game {
